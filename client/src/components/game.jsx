@@ -9,7 +9,6 @@ const Game = (props) => {
         fetch('http://localhost:3000/api')
             .then((response) => response.json())
             .then(data => {
-                console.log("This is line 11", data.results);
                 setQuestions(data.results);
             })
     }
