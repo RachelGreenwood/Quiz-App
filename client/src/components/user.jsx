@@ -7,7 +7,6 @@ const UserForm = (props) => {
     e.preventDefault();
     if (!value) return;
     props.grabUser(value);
-    console.log(value);
     setValue("");
   };
 

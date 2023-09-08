@@ -3,18 +3,11 @@ import QuestionCard from "./questioncard";
 
 const Game = (props) => {
 
+    // Sets questions and score
     const [questions, setQuestions] = useState([]);
-    const [userAnswers, setUserAnswers] = useState([]);
     const [score, setScore] = useState(0);
 
-    const handleAnswerSelect = (selectedAnswer, questionIndex) => {
-        const newAnswers = [...userAnswers];
-        newAnswers[questionIndex] = selectedAnswer;
-        setUserAnswers(newAnswers);
-        console.log(newAnswers);
-        console.log(userAnswers);
-      };
-
+    // Fetches data from API for questions and answers
     const loadData = () => {
         fetch('http://localhost:3000/api')
             .then((response) => response.json())
@@ -27,7 +20,7 @@ const Game = (props) => {
         loadData();
     }, [])
 
-    const [data, setData] = useState("");
+    // Callback function to get final score
     const childToParent = (childData) => {
         setScore(childData);
     }
@@ -38,7 +31,6 @@ const Game = (props) => {
                 <QuestionCard
                 key={index}
                 question={question}
-                userAnswers={userAnswers[index]}
                 onAnswerSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer, index)}
                 score={score}
                 setScore={setScore}
@@ -46,7 +38,7 @@ const Game = (props) => {
                 childToParent={childToParent}
                 />
             ))}
-            <div>Score: {score}</div>
+            <div>Final Score: {score}!</div>
         </div>
     )
 
