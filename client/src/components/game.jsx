@@ -5,6 +5,7 @@ const Game = (props) => {
 
     const [questions, setQuestions] = useState([]);
     const [userAnswers, setUserAnswers] = useState([]);
+    const [score, setScore] = useState(0);
 
     const handleAnswerSelect = (selectedAnswer, questionIndex) => {
         const newAnswers = [...userAnswers];
@@ -37,6 +38,8 @@ const Game = (props) => {
                 question={question}
                 userAnswer={userAnswers[index]}
                 onAnswerSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer, index)}
+                score={score}
+                setScore={setScore}
                 />
             ))}
         </div>
