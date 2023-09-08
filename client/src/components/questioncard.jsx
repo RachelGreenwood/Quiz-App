@@ -6,12 +6,14 @@ const QuestionCard = (props) => {
 
   const [answerSelected, setAnswerSelected] = useState(false);
   const [selectedAns, setSelectedAns] = useState(null);
+  const [score, setScore] = useState(1);
 
   const handleBtnClick = event => {
     setAnswerSelected(true);
     setSelectedAns(event.target.textContent)
     if (event.target.textContent === correct_answer) {
-      console.log("Correct");
+      setScore(score + 1);
+      console.log(score);
     }
   }
 
