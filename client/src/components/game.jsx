@@ -27,11 +27,13 @@ const Game = (props) => {
         loadData();
     }, [])
 
+    const [data, setData] = useState("");
+    const childToParent = (childData) => {
+        setScore(childData);
+    }
+
     return (
         <div className="Container">
-            <div className='question-count'>
-                {/* <span>Question {questions.index + 1}</span>/{questions.length} */}
-            </div>
             {questions.map((question, index) => (
                 <QuestionCard
                 key={index}
@@ -41,8 +43,10 @@ const Game = (props) => {
                 score={score}
                 setScore={setScore}
                 qNum={index + 1}
+                childToParent={childToParent}
                 />
             ))}
+            <div>Score: {score}</div>
         </div>
     )
 

@@ -17,8 +17,8 @@ const QuestionCard = (props) => {
     setSelectedAns(event.target.textContent)
     if (event.target.textContent === correct_answer) {
       props.setScore(props.score + 1);
+      props.childToParent(score)
     }
-    console.log(getRandomNum());
   }
 
     return (
@@ -29,9 +29,6 @@ const QuestionCard = (props) => {
           {allOptions.map((option, index) => (
             <button key={index} onClick={handleBtnClick}>{option}</button>
           ))}
-        </div>
-        <div>
-          Score: {props.score}
         </div>
       </div>
     );
