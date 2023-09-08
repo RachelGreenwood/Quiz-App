@@ -13,9 +13,6 @@ const Game = (props) => {
         setUserAnswers(newAnswers);
         console.log(newAnswers);
         console.log(userAnswers);
-        const getRandomNum = newAnswers => {
-            return Math.floor(Math.random() * newAnswers.length);
-        }
       };
 
     const loadData = () => {
@@ -33,7 +30,7 @@ const Game = (props) => {
     return (
         <div className="Container">
             <div className='question-count'>
-                <span>Question 1</span>/{questions.length}
+                {/* <span>Question {questions.index + 1}</span>/{questions.length} */}
             </div>
             {questions.map((question, index) => (
                 <QuestionCard
@@ -43,6 +40,7 @@ const Game = (props) => {
                 onAnswerSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer, index)}
                 score={score}
                 setScore={setScore}
+                qNum={index + 1}
                 />
             ))}
         </div>

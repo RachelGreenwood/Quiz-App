@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const QuestionCard = (props) => {
   const { question, correct_answer, incorrect_answers } = props.question;
+  const index = 0;
   const allOptions = [...incorrect_answers]; 
   const getRandomNum = () => {
     return Math.floor(Math.random() * (allOptions.length + 1));
@@ -22,6 +23,7 @@ const QuestionCard = (props) => {
 
     return (
       <div className={"question-section"}>
+        <span>Question {props.qNum}</span>/10
         <div className='question-text'>{props.question.question}</div>
         <div className='answer-section'>
           {allOptions.map((option, index) => (
