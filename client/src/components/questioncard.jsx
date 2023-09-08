@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const QuestionCard = (props) => {
   // Makes a list of answers and places correct answer at a random index
   const { correct_answer, incorrect_answers } = props.question;
-  const allOptions = [...incorrect_answers]; 
+  const [allOptions, setAllOptions] = useState([]);
   const getRandomNum = () => {
     return Math.floor(Math.random() * (allOptions.length + 1));
   } 
-  allOptions.splice(getRandomNum(), 0, correct_answer);
+  // Makes buttons stay in constant positions
+  useEffect(() => {
+    const finalOptions = [...incorrect_answers];
+    finalOptions.splice(getRandomNum(), 0, correct_answer);
+    setAllOptions(finalOptions);
+  }, [correct_answer, incorrect_answers])
 
   // Logs if user selected an answer or not
   const [answerSelected, setAnswerSelected] = useState(false);
