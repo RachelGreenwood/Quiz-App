@@ -13,6 +13,9 @@ const Game = (props) => {
         setUserAnswers(newAnswers);
         console.log(newAnswers);
         console.log(userAnswers);
+        const getRandomNum = newAnswers => {
+            return Math.floor(Math.random() * newAnswers.length);
+        }
       };
 
     const loadData = () => {
@@ -36,7 +39,7 @@ const Game = (props) => {
                 <QuestionCard
                 key={index}
                 question={question}
-                userAnswer={userAnswers[index]}
+                userAnswers={userAnswers[index]}
                 onAnswerSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer, index)}
                 score={score}
                 setScore={setScore}
