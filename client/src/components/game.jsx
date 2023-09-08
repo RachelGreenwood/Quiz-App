@@ -4,6 +4,15 @@ import QuestionCard from "./questioncard";
 const Game = (props) => {
 
     const [questions, setQuestions] = useState([]);
+    const [userAnswers, setUserAnswers] = useState([]);
+
+    const handleAnswerSelect = (selectedAnswer, questionIndex) => {
+        const newAnswers = [...userAnswers];
+        newAnswers[questionIndex] = selectedAnswer;
+        setUserAnswers(newAnswers);
+        console.log(newAnswers);
+        console.log(userAnswers);
+      };
 
     const loadData = () => {
         fetch('http://localhost:3000/api')
@@ -22,9 +31,14 @@ const Game = (props) => {
             <div className='question-count'>
                 <span>Question 1</span>/{questions.length}
             </div>
-            {questions.map((question, index) => {
-                return <QuestionCard key={index} question={question} />
-            })}
+            {questions.map((question, index) => (
+                <QuestionCard
+                key={index}
+                question={question}
+                userAnswer={userAnswers[index]}
+                onAnswerSelect={(selectedAnswer) => handleAnswerSelect(selectedAnswer, index)}
+                />
+            ))}
         </div>
     )
 
